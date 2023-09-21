@@ -10,10 +10,8 @@ services:
       - DATABASE_URL=jdbc:postgresql://db-postgresql:5432/rinhadb
       - DATABASE_USERNAME=rinha
       - DATABASE_PASSWORD=rinha123
-      - REDIS_HOST=cache
     depends_on:
       - db-postgresql
-      - cache
     ulimits:
       nofile:
         soft: 1000000
@@ -34,10 +32,8 @@ services:
       - DATABASE_URL=jdbc:postgresql://db-postgresql:5432/rinhadb
       - DATABASE_USERNAME=rinha
       - DATABASE_PASSWORD=rinha123
-      - REDIS_HOST=cache
     depends_on:
       - db-postgresql
-      - cache
     ulimits:
       nofile:
         soft: 1000000
@@ -67,24 +63,10 @@ services:
           cpus: '0.2'
           memory: '0.25GB'
 
-  cache:
-    hostname: cache
-    image: redis:latest
-    command: ["redis-server", "--appendonly", "no", "--save ''"]
-    ports:
-      - '6379:6379'
-    deploy:
-      resources:
-        limits:
-          cpus: '0.05'
-          memory: '0.25GB'
-    networks:
-      - app-network
-
   db-postgresql:
     image: postgres:latest
     command: postgres -c 'max_connections=600'
-    hostname: db
+    hostname: db-postgresql
     environment:
       - POSTGRES_PASSWORD=rinha123
       - POSTGRES_USER=rinha

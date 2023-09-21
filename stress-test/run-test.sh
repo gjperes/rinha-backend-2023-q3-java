@@ -4,9 +4,9 @@
 # curl -v -XGET "http://localhost:9999/pessoas?t=xpto"
 # curl -v "http://localhost:9999/contagem-pessoas"
 
-GATLING_BIN_DIR=$HOME/gatling/3.9.5/bin
+GATLING_BIN_DIR=$HOME/IdeaProjects/gatling/bin/
 
-WORKSPACE=$HOME/workspace/rinha-de-backend-2023-q3/stress-test
+WORKSPACE=$HOME/IdeaProjects/rinha-backend-2023-q3-java/stress-test
 
 sh $GATLING_BIN_DIR/gatling.sh -rm local -s RinhaBackendSimulation \
     -rd "DESCRICAO" \
@@ -14,10 +14,6 @@ sh $GATLING_BIN_DIR/gatling.sh -rm local -s RinhaBackendSimulation \
     -sf $WORKSPACE/user-files/simulations \
     -rsf $WORKSPACE/user-files/resources \
 
-<<<<<<< Updated upstream
 sleep 3
 
 curl -v "http://localhost:9999/contagem-pessoas"
-=======
-curl -v "http://localhost:9999/contagem-pessoas"
->>>>>>> Stashed changes
