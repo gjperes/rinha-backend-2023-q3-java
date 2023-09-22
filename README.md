@@ -80,6 +80,7 @@ cd stress-test
 1. https://github.com/willy-r/rinha-de-backend-2023-javinha
 2. https://github.com/boaglio/rinha-backend-2023-q3-java
 3. https://github.com/brunoborges/rinha-app
+4. https://github.com/juniorleaoo/rinha-de-backend-2023-q3-java/
 
 ## Agradecimentos
 

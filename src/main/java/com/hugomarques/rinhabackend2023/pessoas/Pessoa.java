@@ -2,25 +2,29 @@ package com.hugomarques.rinhabackend2023.pessoas;
 
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "pessoas")
 public class Pessoa implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @Id
     private UUID id;
-    @Column(nullable = false, unique = true, length = 32)
+    @Column(name = "apelido", nullable = false, unique = true, length = 32)
     private String apelido;
-    @Column(nullable = false, length = 100)
+    @Column(name = "nome", nullable = false, length = 100)
     private String nome;
-    @Column(nullable = false)
+    @Column(name = "nascimento", nullable = false)
     private String nascimento;
-    @Column(nullable = true)
+    @Column(name = "stack", columnDefinition = "text")
     @Convert(converter = StringListConverter.class)
-    private List<String> stack;
+    private List<String> stack = Collections.emptyList();
 
     public Pessoa() {
     }
@@ -70,16 +74,5 @@ public class Pessoa implements Serializable {
 
     public void setStack(List<String> stack) {
         this.stack = stack;
-    }
-
-    @Override
-    public String toString() {
-        return "Pessoa{" +
-                "id=" + id +
-                ", apelido='" + apelido + '\'' +
-                ", nome='" + nome + '\'' +
-                ", nascimento='" + nascimento + '\'' +
-                ", stack=" + stack +
-                '}';
     }
 }

@@ -10,11 +10,8 @@ import java.util.UUID;
 public interface PessoaRepository extends JpaRepository<Pessoa, UUID> {
 
     @Query(nativeQuery = true,
-            value = "select p.* from pessoas p " +
-                    "where p.apelido like %:term% or " +
-                    "p.nome like %:term% or " +
-                    "p.nascimento like %:term% or " +
-                    "p.stack like %:term%")
-    List<Pessoa> findAllByTerm(@Param("term") String term);
+            value = "select p.id, p.apelido, p.nome, p.nascimento, p.stack from pessoas p " +
+                    "where p.termo like concat('%', :term, '%')")
+    List<Pessoa> findAllByTerm(@Param("term") final String term);
 
 }
